@@ -1,56 +1,47 @@
-import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import Button from '@mui/material/Button';
+import React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 
-const FruitSurvey = () => {
-  const [name, setName] = useState('');
-  const [favoriteFruit, setFavoriteFruit] = useState('');
+const books = [
+  {
+    title: 'The Holy Bible',
+    summary: 'Religious text of Christianity, considered sacred and canonical.',
+  },
+  {
+    title: 'Quotations from Chairman Mao',
+    summary: 'Collection of statements from speeches and writings by Mao Zedong.',
+  },
+  {
+    title: 'Harry Potter series',
+    summary: 'Fantasy novels by J.K. Rowling, following the life of a young wizard.',
+  },
+  {
+    title: 'The Lord of the Rings',
+    summary: 'High-fantasy novel written by J.R.R. Tolkien, set in Middle-earth.',
+  },
+  {
+    title: 'To Kill a Mockingbird',
+    summary: 'Novel by Harper Lee, dealing with racial injustice and moral growth.',
+  },
+];
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (name && favoriteFruit) {
-      alert(`Hello, ${name}! Your favorite fruit is ${favoriteFruit}.`);
-    } else {
-      alert('Please fill out all the fields.');
-    }
-  };
-
+function MostInfluentialBooks() {
   return (<>
-  <h1>Enter Your name Favourite fruit : </h1>
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Name"
-        variant="outlined"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        data-testid="name"
-      />
-      <Autocomplete
-        options={['Apple', 'Banana', 'Cherry', 'Durian', 'Elderberry']}
-        getOptionLabel={(option) => option}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Favorite Fruit"
-            variant="outlined"
-            data-testid="autocomplete"
-          />
-        )}
-        value={favoriteFruit}
-        onChange={(event, newValue) => setFavoriteFruit(newValue)}
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        data-testid="button"
-      >
-        Submit
-      </Button>
-    </form>
+  <h1>Most Influential Book of all Time</h1>
+    <List>
+      {books.map((book, index) => (
+        <React.Fragment key={index}>
+          <ListItem>
+            <ListItemText primary={book.title} secondary={book.summary} />
+          </ListItem>
+          {index !== books.length - 1 && <Divider />}
+        </React.Fragment>
+      ))}
+    </List>
     </>
   );
-};
+}
 
-export default FruitSurvey;
+export default MostInfluentialBooks;
