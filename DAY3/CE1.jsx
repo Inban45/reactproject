@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+const Toggle = ()=>{
 
-const ToggleMessage = () => {
-    const [isMessageVisible, setIsMessageVisible] = useState('true');
+    function greeting(){
+        var button = document.getElementById('button')
+        if(button.className==="show"){
+            button.textContent="Show Component"
+            console.log("Test")
+            button.className="hide"
+             document.getElementById('greet').innerHTML=""
+            return;
+        }
 
-    const toggleMessage = () => {
-        setIsMessageVisible(!isMessageVisible);
-    };
-
-    return (
-        <div style={{textAlign:'center'}}>
-            <button style={{padding:'10px 20px', marginTop:'200px', fontSize:'bolder'}} onClick={toggleMessage}>{isMessageVisible ? 'Hide Component' : 'Show Component'}</button><br/>
-            {isMessageVisible && <div style={{fontSize:'50px'}}>Hi! How are you!!!</div>}
-        </div>
-    );
-};
-
-export default ToggleMessage;
+        var value = document.getElementById('greet')
+        
+        document.getElementById('greet').innerHTML="Hi! How are You!!!"
+        document.getElementById('button').textContent="Hide Component"
+        button.className="show"
+    }
+    return(
+        <>
+        <button onClick={greeting} id="button" className="hide">Show Component</button>
+        <p id="greet"></p>
+        </>
+    )
+}
+export default Toggle;
