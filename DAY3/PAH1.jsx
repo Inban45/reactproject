@@ -1,36 +1,29 @@
-import React, { useState } from 'react';
+const Goku=()=>{
+    var value = 0
+    
+    function count(){
+        if(value%3===0 && value!==0 &&document.getElementById("state").className==="kai"){
+            console.log("test")
+            document.getElementById("state").textContent="State   :   SuperSaiyan"
+            document.getElementById("state").className="sai"
+            value = 0
+            return;
+        }
+        if(value%3===0 && value!==0 &&document.getElementById("state").className==="sai"){
+            console.log("test")
+            document.getElementById("state").textContent="State   :   Kaioken"
+            document.getElementById("state").className="kai"
+            value = 0
+            return;
+        }
 
-const ToggleMessage = () => {
-  const [transformation, setTransformation] = useState('Kaioken');
-  const [clickCount, setClickCount] = useState(0);
-
-  const toggleTransformation = () => {
-    setClickCount((prevClickCount) => {
-      const newClickCount = prevClickCount + 1;
-      if (newClickCount === 4) {
-        setTransformation((prevTransformation) =>
-          prevTransformation === 'Kaioken' ? 'SuperSaiyan' : 'Kaioken'
-        );
-        return 0;
-      }
-      return newClickCount;
-    });
-  };
-
-  return (
-    <div style={{
-      display:'flex',
-      flexDirection:'column',
-      justifyContent:'center',
-      alignItems:'center',
-      height:'90vh',
-      textAlign:'center'
-      }}>
-      <h1>Goku's Transformation: {transformation}</h1>
-      <button onClick={toggleTransformation} style={{padding:'10px 20px'}}>Toggle Transformation</button>
-      <p>Click count : {clickCount}</p>
-    </div>
-  );
-};
-
-export default ToggleMessage;
+        value = value+1;
+    }
+    return(<>
+        <h1>Goku Transformation State</h1>
+        <h2 id="state" className="kai">State  :  Kaioken</h2>
+        <button onClick={count}>Transformation</button>
+        </>
+    )
+}
+export default Goku;
